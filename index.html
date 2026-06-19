@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* ============================================
-                   RESET
-                   ============================================ */
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -25,27 +23,28 @@
             color: #1a2a3a;
         }
 
-        /* ============================================
-                   BACKGROUND
-                   ============================================ */
+        /* ===== BACKGROUND ===== */
         .elegant-bg {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(160deg,
-                    #dce4ed 0%,
-                    #c8d4e0 20%,
-                    #b8c8d8 40%,
-                    #d0dce8 60%,
-                    #e4ebf0 80%,
-                    #dce4ed 100%);
+            background: linear-gradient(160deg, #dce4ed 0%, #c8d4e0 20%, #b8c8d8 40%, #d0dce8 60%, #e4ebf0 80%, #dce4ed 100%);
+            animation: bgPulse 8s ease-in-out infinite;
         }
 
-        /* ============================================
-                   FLOATING ANIMATION
-                   ============================================ */
+        @keyframes bgPulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* ===== FLOATING ITEMS ===== */
         .floating-items {
             position: absolute;
             inset: 0;
@@ -65,123 +64,69 @@
                 transform: translateY(-10vh) rotate(0deg) scale(0.3);
                 opacity: 0;
             }
-            8% {
+            10% {
                 opacity: 0.08;
             }
-            92% {
-                opacity: 0.06;
+            90% {
+                opacity: 0.08;
             }
             100% {
-                transform: translateY(110vh) rotate(360deg) scale(1.1);
+                transform: translateY(110vh) rotate(720deg) scale(1.2);
                 opacity: 0;
             }
         }
 
-        /* ============================================
-                   HERO SECTION
-                   ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            background: linear-gradient(180deg,
-                    rgba(200, 212, 224, 0.3) 0%,
-                    rgba(220, 228, 237, 0.2) 50%,
-                    rgba(200, 212, 224, 0.3) 100%);
-            backdrop-filter: blur(2px);
+        .float-item-side {
+            position: absolute;
+            font-size: 18px;
+            opacity: 0.04;
+            animation: floatSide linear infinite;
+            user-select: none;
         }
 
-        .hero .bismillah {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(15px, 2.5vw, 19px);
-            color: #5a7a9a;
-            letter-spacing: 3px;
-            margin-bottom: 0.8rem;
-            font-style: italic;
-        }
-
-        .hero .birds-row {
-            font-size: clamp(20px, 3vw, 30px);
-            letter-spacing: 10px;
-            color: #6a8aaa;
-            margin-bottom: 1rem;
-            animation: floatBirds 4s ease-in-out infinite;
-        }
-
-        @keyframes floatBirds {
-            0%,
+        @keyframes floatSide {
+            0% {
+                transform: translateX(-10vw) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.06;
+            }
+            90% {
+                opacity: 0.06;
+            }
             100% {
-                transform: translateY(0) rotate(-1deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(1deg);
+                transform: translateX(110vw) rotate(360deg) scale(1.1);
+                opacity: 0;
             }
         }
 
-        .hero .names {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(38px, 7vw, 64px);
-            font-weight: 300;
-            color: #1a2a3a;
-            line-height: 1.15;
-            margin: 0.5rem 0;
-            text-shadow: 0 2px 20px rgba(90, 122, 154, 0.08);
+        .float-sway {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.05;
+            animation: swayFloat 8s ease-in-out infinite;
+            user-select: none;
         }
 
-        .hero .amp {
-            font-style: italic;
-            color: #6a8aaa;
-            font-size: clamp(30px, 5.5vw, 52px);
-            animation: shimmerWave 3s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes shimmerWave {
-            0%,
+        @keyframes swayFloat {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.08;
+            }
+            80% {
+                opacity: 0.06;
+            }
             100% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
+                transform: translateY(-80px) rotate(20deg) scale(0.8);
+                opacity: 0;
             }
         }
 
-        .hero .tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: clamp(15px, 2.5vw, 20px);
-            color: #5a7a9a;
-            margin: 0.5rem 0 1.5rem;
-        }
-
-        .hero .date-badge {
-            display: inline-block;
-            background: rgba(90, 122, 154, 0.06);
-            color: #4a6a8a;
-            padding: clamp(8px, 1.5vw, 11px) clamp(20px, 4vw, 34px);
-            border-radius: 40px;
-            font-size: clamp(11px, 1.8vw, 14px);
-            letter-spacing: 3px;
-            border: 1px solid rgba(90, 122, 154, 0.1);
-            transition: all 0.4s ease;
-        }
-
-        .hero .date-badge:hover {
-            background: rgba(90, 122, 154, 0.1);
-            border-color: rgba(90, 122, 154, 0.2);
-        }
-
-        /* ============================================
-                   MUSIC PLAYER
-                   ============================================ */
+        /* ===== MUSIC PLAYER ===== */
         .music-player {
             position: fixed;
             bottom: 30px;
@@ -196,7 +141,6 @@
             align-items: center;
             gap: 12px;
             box-shadow: 0 8px 32px rgba(90, 122, 154, 0.08);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             animation: musicPulse 2s ease-in-out infinite;
         }
@@ -204,23 +148,23 @@
         .music-player:hover {
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 8px 40px rgba(90, 122, 154, 0.12);
         }
 
         @keyframes musicPulse {
             0%,
             100% {
                 box-shadow: 0 8px 32px rgba(90, 122, 154, 0.08);
+                transform: scale(1);
             }
             50% {
                 box-shadow: 0 8px 48px rgba(90, 122, 154, 0.15);
+                transform: scale(1.02);
             }
         }
 
         .music-player .music-icon {
             font-size: 24px;
             animation: spin 4s linear infinite;
-            display: inline-block;
         }
 
         @keyframes spin {
@@ -236,31 +180,24 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 0px;
         }
 
         .music-player .music-text {
             font-size: 13px;
             color: #1a2a3a;
             font-weight: 500;
-            letter-spacing: 0.3px;
-            font-family: 'Inter', sans-serif;
         }
 
         .music-player .music-name {
             font-size: 11px;
             color: #5a7a9a;
             opacity: 0.7;
-            font-weight: 300;
-            font-family: 'Inter', sans-serif;
         }
 
         .music-player .music-status {
             font-size: 10px;
             color: #5a7a9a;
             opacity: 0.5;
-            font-weight: 300;
-            font-family: 'Inter', sans-serif;
             margin-left: 2px;
         }
 
@@ -268,7 +205,7 @@
             animation-play-state: paused;
         }
 
-        /* ===== Music Equalizer Animation ===== */
+        /* ===== Equalizer ===== */
         .equalizer {
             display: flex;
             align-items: center;
@@ -320,9 +257,348 @@
             }
         }
 
-        /* ============================================
-                   COUPLE SECTION
-                   ============================================ */
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(200, 212, 224, 0.3) 0%, rgba(220, 228, 237, 0.2) 50%, rgba(200, 212, 224,
+                        0.3) 100%);
+            backdrop-filter: blur(2px);
+            animation: heroFade 1.5s ease-out;
+        }
+
+        @keyframes heroFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero .bismillah {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(15px, 2.5vw, 19px);
+            color: #5a7a9a;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+            animation: shimmerText 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerText {
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .hero .birds-row {
+            font-size: clamp(20px, 3vw, 30px);
+            letter-spacing: 10px;
+            color: #6a8aaa;
+            margin-bottom: 1rem;
+            animation: floatBirds 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBirds {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+        }
+
+        .hero .names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 7vw, 64px);
+            font-weight: 300;
+            color: #1a2a3a;
+            line-height: 1.15;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 20px rgba(90, 122, 154, 0.08);
+            animation: nameGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes nameGlow {
+            0%,
+            100% {
+                text-shadow: 0 2px 20px rgba(90, 122, 154, 0.08);
+            }
+            50% {
+                text-shadow: 0 2px 40px rgba(90, 122, 154, 0.2);
+            }
+        }
+
+        .hero .amp {
+            font-style: italic;
+            color: #6a8aaa;
+            font-size: clamp(30px, 5.5vw, 52px);
+            animation: shimmerWave 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes shimmerWave {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(15px, 2.5vw, 20px);
+            color: #5a7a9a;
+            margin: 0.5rem 0 1.5rem;
+            animation: taglineFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes taglineFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .hero .date-badge {
+            display: inline-block;
+            background: rgba(90, 122, 154, 0.06);
+            color: #4a6a8a;
+            padding: clamp(8px, 1.5vw, 11px) clamp(20px, 4vw, 34px);
+            border-radius: 40px;
+            font-size: clamp(11px, 1.8vw, 14px);
+            letter-spacing: 3px;
+            border: 1px solid rgba(90, 122, 154, 0.1);
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%,
+            100% {
+                transform: scale(1);
+                border-color: rgba(90, 122, 154, 0.1);
+            }
+            50% {
+                transform: scale(1.03);
+                border-color: rgba(90, 122, 154, 0.3);
+            }
+        }
+
+        /* ===== VIDEO OVERLAY ===== */
+        #videoOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(200, 212, 224, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #videoOverlay.hidden {
+            display: none;
+        }
+
+        #playBtn {
+            text-align: center;
+            color: #1a2a3a;
+            padding: 50px 60px;
+            border: 1.5px solid rgba(90, 122, 154, 0.15);
+            border-radius: 50%;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            animation: pulseElegant 3s ease-in-out infinite;
+            box-shadow: 0 8px 40px rgba(90, 122, 154, 0.04);
+        }
+
+        @keyframes pulseElegant {
+            0%,
+            100% {
+                box-shadow: 0 8px 40px rgba(90, 122, 154, 0.04);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 8px 60px rgba(90, 122, 154, 0.08);
+                transform: scale(1.02);
+            }
+        }
+
+        #playBtn:hover {
+            transform: scale(1.05);
+            border-color: rgba(90, 122, 154, 0.25);
+            box-shadow: 0 8px 60px rgba(90, 122, 154, 0.06);
+            background: rgba(255, 255, 255, 0.4);
+            animation-play-state: paused;
+        }
+
+        #playBtn .icon-big {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 10px;
+            animation: floatWave 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floatWave {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+            50% {
+                transform: translateY(-14px) rotate(3deg);
+            }
+        }
+
+        #playBtn h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 4px;
+            color: #3a5a7a;
+        }
+
+        #playBtn p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: rgba(58, 90, 122, 0.3);
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== VIDEO CONTAINER ===== */
+        #videoContainer {
+            position: fixed;
+            inset: 0;
+            background: #1a2a3a;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #videoContainer.show {
+            display: flex;
+        }
+
+        #weddingVideo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        #videoContainer.show~*:not(#videoContainer) {
+            display: none !important;
+        }
+
+        /* ===== MAIN SITE ===== */
+        .site {
+            position: relative;
+            z-index: 1;
+            padding: 0 0 3rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(200, 212, 224, 0.2) 40%, rgba(200, 212, 224, 0.5) 70%,
+                    rgba(200, 212, 224, 0.8) 100%);
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 2rem clamp(1rem, 4vw, 2rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(90, 122, 154, 0.15), transparent);
+            animation: linePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes linePulse {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scaleX(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        .divider-icon {
+            font-size: 18px;
+            color: rgba(90, 122, 154, 0.3);
+            animation: floatBirds 3s ease-in-out infinite;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 300;
+            color: #1a2a3a;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            letter-spacing: 2px;
+            animation: titlePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        /* ===== COUPLE ===== */
         .couple-section {
             padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem);
             max-width: 700px;
@@ -369,10 +645,13 @@
         @keyframes cardFloat {
             0%,
             100% {
-                transform: translateY(0);
+                transform: translateY(0) rotate(0deg);
             }
-            50% {
-                transform: translateY(-10px);
+            25% {
+                transform: translateY(-8px) rotate(-0.5deg);
+            }
+            75% {
+                transform: translateY(-8px) rotate(0.5deg);
             }
         }
 
@@ -380,16 +659,13 @@
             transform: scale(1.04) translateY(-8px);
             box-shadow: 0 20px 60px rgba(90, 122, 154, 0.2);
             border-color: rgba(90, 122, 154, 0.3);
+            animation-play-state: paused;
         }
 
         .couple-card .image-placeholder {
             position: relative;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             background: linear-gradient(145deg, #d0dce8, #b8c8d8);
             transition: all 0.5s ease;
         }
@@ -415,6 +691,19 @@
             font-family: 'Cormorant Garamond', serif;
             white-space: nowrap;
             z-index: 2;
+            animation: labelPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes labelPulse {
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+            }
         }
 
         .couple-card .frame-deco {
@@ -424,21 +713,17 @@
             border-radius: 14px;
             pointer-events: none;
             z-index: 1;
+            animation: frameGlow 4s ease-in-out infinite;
         }
 
-        .couple-card .glow-ring {
-            position: absolute;
-            inset: -4px;
-            border-radius: 22px;
-            background: linear-gradient(135deg, transparent 40%, rgba(90, 122, 154, 0.05) 100%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: 0;
-        }
-
-        .couple-card:hover .glow-ring {
-            opacity: 1;
+        @keyframes frameGlow {
+            0%,
+            100% {
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                border-color: rgba(255, 255, 255, 0.5);
+            }
         }
 
         .couple-label {
@@ -450,11 +735,20 @@
             font-style: italic;
             opacity: 0.7;
             letter-spacing: 2px;
+            animation: labelFloat 3s ease-in-out infinite;
         }
 
-        /* ============================================
-                   GALLERY
-                   ============================================ */
+        @keyframes labelFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* ===== GALLERY ===== */
         .gallery-section {
             padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
             max-width: 700px;
@@ -464,19 +758,21 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 14px;
         }
 
         .gallery-item {
+            position: relative;
             aspect-ratio: 1/1;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             animation: galleryFade 0.8s ease both;
             cursor: pointer;
+            box-shadow: 0 4px 20px rgba(90, 122, 154, 0.04);
         }
 
         .gallery-item:nth-child(1) {
@@ -501,19 +797,12 @@
         @keyframes galleryFade {
             from {
                 opacity: 0;
-                transform: scale(0.9) translateY(20px);
+                transform: scale(0.85) translateY(30px) rotate(-2deg);
             }
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: scale(1) translateY(0) rotate(0deg);
             }
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            border-color: rgba(90, 122, 154, 0.2);
-            box-shadow: 0 8px 30px rgba(90, 122, 154, 0.06);
-            background: rgba(255, 255, 255, 0.35);
         }
 
         .gallery-item img {
@@ -521,11 +810,63 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.6s ease;
         }
 
-        /* ============================================
-                   INFO CARDS (ABOUT COUPLE)
-                   ============================================ */
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.04) translateY(-6px);
+            border-color: rgba(90, 122, 154, 0.3);
+            box-shadow: 0 12px 40px rgba(90, 122, 154, 0.12);
+            animation-play-state: paused;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 42, 58, 0.7) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .gallery-overlay .gallery-label {
+            font-size: 13px;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay .gallery-label {
+            transform: translateY(0);
+        }
+
+        /* ===== INFO CARDS ===== */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -557,10 +898,11 @@
         }
 
         .info-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-6px) scale(1.02);
             border-color: rgba(90, 122, 154, 0.15);
             box-shadow: 0 8px 30px rgba(90, 122, 154, 0.04);
             background: rgba(255, 255, 255, 0.35);
+            animation-play-state: paused;
         }
 
         .info-card .info-icon {
@@ -598,191 +940,15 @@
         @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        /* ============================================
-                   VIDEO OVERLAY
-                   ============================================ */
-        #videoOverlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(200, 212, 224, 0.92);
-            backdrop-filter: blur(16px);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        #videoOverlay.hidden {
-            display: none;
-        }
-
-        #playBtn {
-            text-align: center;
-            color: #1a2a3a;
-            padding: 50px 60px;
-            border: 1.5px solid rgba(90, 122, 154, 0.15);
-            border-radius: 50%;
-            width: 220px;
-            height: 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            transition: all 0.5s ease;
-            animation: pulseElegant 3s ease-in-out infinite;
-            box-shadow: 0 8px 40px rgba(90, 122, 154, 0.04);
-        }
-
-        @keyframes pulseElegant {
-            0%,
-            100% {
-                box-shadow: 0 8px 40px rgba(90, 122, 154, 0.04);
-            }
-            50% {
-                box-shadow: 0 8px 60px rgba(90, 122, 154, 0.08);
-            }
-        }
-
-        #playBtn:hover {
-            transform: scale(1.05);
-            border-color: rgba(90, 122, 154, 0.25);
-            box-shadow: 0 8px 60px rgba(90, 122, 154, 0.06);
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        #playBtn .icon-big {
-            font-size: 72px;
-            display: block;
-            margin-bottom: 10px;
-            animation: floatWave 3.5s ease-in-out infinite;
-        }
-
-        @keyframes floatWave {
-            0%,
-            100% {
-                transform: translateY(0) rotate(-3deg);
-            }
-            50% {
-                transform: translateY(-14px) rotate(3deg);
-            }
-        }
-
-        #playBtn h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
-            font-weight: 300;
-            margin: 0;
-            letter-spacing: 4px;
-            color: #3a5a7a;
-        }
-
-        #playBtn p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            color: rgba(58, 90, 122, 0.3);
-            margin-top: 6px;
-            letter-spacing: 2px;
-        }
-
-        /* ============================================
-                   VIDEO CONTAINER
-                   ============================================ */
-        #videoContainer {
-            position: fixed;
-            inset: 0;
-            background: #1a2a3a;
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #videoContainer.show {
-            display: flex;
-        }
-
-        #weddingVideo {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
-
-        #videoContainer.show~*:not(#videoContainer) {
-            display: none !important;
-        }
-
-        /* ============================================
-                   MAIN SITE
-                   ============================================ */
-        .site {
-            position: relative;
-            z-index: 1;
-            padding: 0 0 3rem;
-            background: linear-gradient(180deg,
-                    transparent 0%,
-                    rgba(200, 212, 224, 0.2) 40%,
-                    rgba(200, 212, 224, 0.5) 70%,
-                    rgba(200, 212, 224, 0.8) 100%);
-        }
-
-        /* ============================================
-                   DIVIDER
-                   ============================================ */
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 2rem clamp(1rem, 4vw, 2rem);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(90, 122, 154, 0.15), transparent);
-        }
-
-        .divider-icon {
-            font-size: 18px;
-            color: rgba(90, 122, 154, 0.3);
-            animation: floatBirds 3s ease-in-out infinite;
-        }
-
-        /* ============================================
-                   SECTIONS
-                   ============================================ */
-        .section {
-            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(22px, 4vw, 32px);
-            font-weight: 300;
-            color: #1a2a3a;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            letter-spacing: 2px;
-        }
-
-        /* ============================================
-                   TIMER
-                   ============================================ */
+        /* ===== TIMER ===== */
         .timer-grid {
             display: flex;
             justify-content: center;
@@ -801,12 +967,38 @@
             text-align: center;
             transition: all 0.4s ease;
             box-shadow: 0 4px 20px rgba(90, 122, 154, 0.02);
+            animation: timerPop 0.6s ease both;
+        }
+
+        .timer-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .timer-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .timer-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .timer-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes timerPop {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
 
         .timer-item:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) scale(1.05);
             box-shadow: 0 8px 30px rgba(90, 122, 154, 0.04);
             border-color: rgba(90, 122, 154, 0.15);
+            animation-play-state: paused;
         }
 
         .timer-item .num {
@@ -816,6 +1008,19 @@
             color: #1a2a3a;
             display: block;
             line-height: 1.2;
+            animation: numPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes numPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                color: #1a2a3a;
+            }
+            50% {
+                transform: scale(1.05);
+                color: #5a7a9a;
+            }
         }
 
         .timer-item .lbl {
@@ -824,11 +1029,20 @@
             letter-spacing: 3px;
             color: #5a7a9a;
             opacity: 0.5;
+            animation: lblPulse 3s ease-in-out infinite;
         }
 
-        /* ============================================
-                   VENUE
-                   ============================================ */
+        @keyframes lblPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== VENUE ===== */
         .venue-card {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
@@ -841,12 +1055,32 @@
             align-items: flex-start;
             transition: all 0.5s ease;
             box-shadow: 0 4px 20px rgba(90, 122, 154, 0.02);
+            animation: venueSlide 0.8s ease both;
+        }
+
+        .venue-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .venue-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes venueSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .venue-card:hover {
             border-color: rgba(90, 122, 154, 0.15);
-            transform: translateX(4px);
+            transform: translateX(4px) scale(1.01);
             background: rgba(255, 255, 255, 0.35);
+            animation-play-state: paused;
         }
 
         .venue-icon {
@@ -860,11 +1094,25 @@
             font-size: clamp(18px, 2.5vw, 22px);
             flex-shrink: 0;
             transition: all 0.4s ease;
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                background: rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                transform: scale(1.1);
+                background: rgba(255, 255, 255, 0.5);
+            }
         }
 
         .venue-card:hover .venue-icon {
             background: rgba(255, 255, 255, 0.5);
             transform: scale(1.05);
+            animation-play-state: paused;
         }
 
         .venue-info h3 {
@@ -892,17 +1140,27 @@
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid rgba(90, 122, 154, 0.1);
+            animation: linkPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes linkPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .venue-link:hover {
             background: rgba(90, 122, 154, 0.2);
-            transform: translateX(4px);
+            transform: translateX(4px) scale(1.05);
             border-color: rgba(90, 122, 154, 0.2);
+            animation-play-state: paused;
         }
 
-        /* ============================================
-                   DUA
-                   ============================================ */
+        /* ===== DUA ===== */
         .dua-box {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
@@ -916,10 +1174,24 @@
             margin-right: auto;
             transition: all 0.5s ease;
             box-shadow: 0 4px 20px rgba(90, 122, 154, 0.02);
+            animation: duaFade 1s ease both;
+        }
+
+        @keyframes duaFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9) rotate(-2deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
 
         .dua-box:hover {
             border-color: rgba(90, 122, 154, 0.12);
+            transform: scale(1.01);
+            animation-play-state: paused;
         }
 
         .dua-label {
@@ -929,6 +1201,17 @@
             text-transform: uppercase;
             margin-bottom: 8px;
             opacity: 0.6;
+            animation: labelPulse2 3s ease-in-out infinite;
+        }
+
+        @keyframes labelPulse2 {
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
         .dua-text {
@@ -937,11 +1220,21 @@
             color: #2a4a6a;
             font-style: italic;
             line-height: 1.8;
+            animation: duaTextPulse 4s ease-in-out infinite;
         }
 
-        /* ============================================
-                   FOOTER
-                   ============================================ */
+        @keyframes duaTextPulse {
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.01);
+            }
+        }
+
+        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
@@ -955,6 +1248,7 @@
             color: #1a2a3a;
             font-style: italic;
             margin-bottom: 0.5rem;
+            animation: nameGlow 4s ease-in-out infinite;
         }
 
         .footer-msg {
@@ -962,6 +1256,17 @@
             color: #4a6a8a;
             line-height: 1.8;
             opacity: 0.6;
+            animation: msgPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes msgPulse {
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.8;
+            }
         }
 
         .footer-dua {
@@ -975,9 +1280,7 @@
             opacity: 0.7;
         }
 
-        /* ============================================
-                   INSTAGRAM LINK
-                   ============================================ */
+        /* ===== INSTAGRAM ===== */
         .instagram-link {
             display: inline-flex;
             align-items: center;
@@ -993,13 +1296,25 @@
             font-family: 'Inter', sans-serif;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 4px 16px rgba(90, 122, 154, 0.04);
+            animation: instaPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes instaPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .instagram-link:hover {
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px) scale(1.05);
             background: rgba(255, 255, 255, 0.35);
             border-color: rgba(90, 122, 154, 0.25);
             box-shadow: 0 8px 30px rgba(90, 122, 154, 0.08);
+            animation-play-state: paused;
         }
 
         .instagram-link .ig-icon {
@@ -1011,24 +1326,12 @@
             transform: scale(1.1) rotate(-5deg);
         }
 
-        .instagram-link .ig-text {
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .instagram-link .ig-username {
-            font-weight: 300;
-            opacity: 0.7;
-        }
-
         .instagram-wrapper {
             text-align: center;
             padding: 0.5rem 0;
         }
 
-        /* ============================================
-                   PARTICLES
-                   ============================================ */
+        /* ===== PARTICLES ===== */
         .particles {
             position: relative;
             overflow: hidden;
@@ -1045,23 +1348,23 @@
         @keyframes particleFloat {
             0% {
                 opacity: 0;
-                transform: translateY(0) scale(0);
+                transform: translateY(0) scale(0) rotate(0deg);
             }
             20% {
                 opacity: 0.4;
+                transform: translateY(-20px) scale(1) rotate(90deg);
             }
             80% {
                 opacity: 0.2;
+                transform: translateY(-60px) scale(0.8) rotate(180deg);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-80px) scale(1);
+                transform: translateY(-80px) scale(0) rotate(360deg);
             }
         }
 
-        /* ============================================
-                   RESPONSIVE
-                   ============================================ */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             #playBtn {
                 width: 160px;
@@ -1103,7 +1406,14 @@
             }
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                gap: 10px;
+            }
+            .gallery-overlay span {
+                font-size: 20px;
+            }
+            .gallery-overlay .gallery-label {
+                font-size: 11px;
+                padding: 2px 12px;
             }
             .instagram-link {
                 padding: 8px 18px;
@@ -1133,16 +1443,12 @@
 </head>
 <body>
 
-    <!-- ============================================
-    BACKGROUND
-    ============================================ -->
+    <!-- ===== BACKGROUND ===== -->
     <div class="elegant-bg">
         <div class="floating-items" id="floatingItems"></div>
     </div>
 
-    <!-- ============================================
-    MUSIC PLAYER
-    ============================================ -->
+    <!-- ===== MUSIC PLAYER ===== -->
     <div class="music-player" id="musicPlayer" onclick="toggleMusic()">
         <span class="music-icon">🎵</span>
         <div class="equalizer">
@@ -1153,15 +1459,13 @@
             <span class="bar"></span>
         </div>
         <div class="music-info">
-            <div class="music-text"> Music</div>
+            <div class="music-text">Music</div>
             <div class="music-name" id="musicName">🎵 My Wedding Song</div>
         </div>
         <span class="music-status" id="musicStatus">▶</span>
     </div>
 
-    <!-- ============================================
-    VIDEO OVERLAY
-    ============================================ -->
+    <!-- ===== VIDEO OVERLAY ===== -->
     <div id="videoOverlay" onclick="playVideo()">
         <div id="playBtn">
             <span class="icon-big">💫</span>
@@ -1170,9 +1474,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-    VIDEO CONTAINER
-    ============================================ -->
+    <!-- ===== VIDEO CONTAINER ===== -->
     <div id="videoContainer">
         <video id="weddingVideo" playsinline preload="metadata">
             <source src="assets/video.mp4" type="video/mp4">
@@ -1180,14 +1482,10 @@
         </video>
     </div>
 
-    <!-- ============================================
-    MAIN SITE
-    ============================================ -->
+    <!-- ===== MAIN SITE ===== -->
     <div class="site">
 
-        <!-- ============================================
-        HERO SECTION
-        ============================================ -->
+        <!-- ===== HERO ===== -->
         <div class="hero particles" id="hero">
             <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
             <div class="birds-row">🕊️ ✦ ✧ ✦ 🕊️</div>
@@ -1196,8 +1494,6 @@
             </div>
             <p class="tagline">The beginning of a new journey — with Allah's blessings</p>
             <div class="date-badge">15 December 2026 · Cairo, Egypt</div>
-
-            <!-- Instagram Link -->
             <div style="margin-top: 1.5rem;">
                 <a href="https://www.instagram.com/yourwedding.eg/" target="_blank" class="instagram-link">
                     <span class="ig-icon">📸</span>
@@ -1207,23 +1503,17 @@
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">✦</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        COUPLE SECTION
-        ============================================ -->
+        <!-- ===== COUPLE ===== -->
         <div class="couple-section">
             <p class="section-title">✦ The Bride &amp; Groom ✦</p>
             <div class="couple-grid">
-
-                <!-- Groom -->
                 <div class="couple-card-wrapper">
                     <div class="couple-card">
                         <div class="glow-ring"></div>
@@ -1235,8 +1525,6 @@
                     </div>
                     <div class="couple-label">— The Groom —</div>
                 </div>
-
-                <!-- Bride -->
                 <div class="couple-card-wrapper">
                     <div class="couple-card">
                         <div class="glow-ring"></div>
@@ -1248,96 +1536,110 @@
                     </div>
                     <div class="couple-label">— The Bride —</div>
                 </div>
-
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">🕊️</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        GALLERY
-        ============================================ -->
+        <!-- ===== GALLERY ===== -->
         <div class="gallery-section">
             <p class="section-title">✦ Photo Gallery ✦</p>
+            <p style="text-align:center; color:#5a7a9a; font-size:14px; margin-bottom:1.5rem; opacity:0.7;">
+                📸 Hover to explore memories
+            </p>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="assets/photo1.jpg" alt="Photo">
+                    <img src="assets/photo1.jpg" alt="Memory 1">
+                    <div class="gallery-overlay">
+                        <span>❤️</span>
+                        <span class="gallery-label">Our Story</span>
+                    </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/photo2.jpg" alt="Photo">
+                    <img src="assets/photo2.jpg" alt="Memory 2">
+                    <div class="gallery-overlay">
+                        <span>💕</span>
+                        <span class="gallery-label">Love</span>
+                    </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/photo3.jpg" alt="Photo">
+                    <img src="assets/photo3.jpg" alt="Memory 3">
+                    <div class="gallery-overlay">
+                        <span>✨</span>
+                        <span class="gallery-label">Moments</span>
+                    </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/photo4.jpg" alt="Photo">
+                    <img src="assets/photo4.jpg" alt="Memory 4">
+                    <div class="gallery-overlay">
+                        <span>🌹</span>
+                        <span class="gallery-label">Romance</span>
+                    </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/photo5.jpg" alt="Photo">
+                    <img src="assets/photo5.jpg" alt="Memory 5">
+                    <div class="gallery-overlay">
+                        <span>💫</span>
+                        <span class="gallery-label">Dreams</span>
+                    </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/photo6.jpg" alt="Photo">
+                    <img src="assets/photo6.jpg" alt="Memory 6">
+                    <div class="gallery-overlay">
+                        <span>🌺</span>
+                        <span class="gallery-label">Forever</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">✦</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        ABOUT THE COUPLE
-        ============================================ -->
+        <!-- ===== ABOUT ===== -->
         <div class="section">
             <p class="section-title">✦ About the Couple ✦</p>
             <div class="info-grid">
                 <div class="info-card">
                     <span class="info-icon">💑</span>
                     <div class="info-title">How We Met</div>
-                    <div class="info-desc">A beautiful journey that began with a shared smile and grew into a lifelong bond.</div>
+                    <div class="info-desc">A beautiful journey that began with a shared smile.</div>
                 </div>
                 <div class="info-card">
                     <span class="info-icon">🤲</span>
                     <div class="info-title">Our Values</div>
-                    <div class="info-desc">Faith, family, love, and respect — the foundation of our relationship.</div>
+                    <div class="info-desc">Faith, family, love, and respect.</div>
                 </div>
                 <div class="info-card">
                     <span class="info-icon">🌍</span>
                     <div class="info-title">Our Vision</div>
-                    <div class="info-desc">Building a life filled with kindness, compassion, and shared dreams.</div>
+                    <div class="info-desc">Building a life filled with kindness and compassion.</div>
                 </div>
                 <div class="info-card">
                     <span class="info-icon">💝</span>
                     <div class="info-title">Our Promise</div>
-                    <div class="info-desc">To cherish each other, grow together, and always be each other's strength.</div>
+                    <div class="info-desc">To cherish each other and grow together.</div>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">🕊️</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        COUNTDOWN
-        ============================================ -->
+        <!-- ===== COUNTDOWN ===== -->
         <div class="section">
             <p class="section-title">✦ Countdown ✦</p>
             <div class="timer-grid" id="timer">
@@ -1360,15 +1662,14 @@
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER + INSTAGRAM
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">✦</span>
             <div class="divider-line"></div>
         </div>
 
+        <!-- ===== INSTAGRAM ===== -->
         <div class="instagram-wrapper">
             <a href="https://www.instagram.com/yourwedding.eg/" target="_blank" class="instagram-link">
                 <span class="ig-icon">📸</span>
@@ -1383,16 +1684,14 @@
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        VENUE
-        ============================================ -->
+        <!-- ===== VENUE ===== -->
         <div class="section">
             <p class="section-title">✦ Wedding Venue ✦</p>
             <div class="venue-card">
                 <div class="venue-icon">🏛️</div>
                 <div class="venue-info">
                     <h3>Noor Mahal Palace</h3>
-                    <p>VIP Road, Kohefiza, Bhopal, Madhya Pradesh 462001</p>
+                    <p>VIP Road, Kohefiza, Bhopal, MP 462001</p>
                     <a href="https://maps.app.goo.gl/TkTiAvKACvWxADVo8" target="_blank" class="venue-link">
                         📍 Open in Google Maps
                     </a>
@@ -1400,35 +1699,27 @@
             </div>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">✦</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        DUA
-        ============================================ -->
+        <!-- ===== DUA ===== -->
         <div class="dua-box">
             <div class="dua-label">✦ Prayer ✦</div>
             <p class="dua-text">"May Allah bless this union with love, mercy, and eternal happiness. <br> Your presence and prayers are our greatest treasure."</p>
         </div>
 
-        <!-- ============================================
-        DIVIDER
-        ============================================ -->
+        <!-- ===== DIVIDER ===== -->
         <div class="divider">
             <div class="divider-line"></div>
             <span class="divider-icon">🕊️</span>
             <div class="divider-line"></div>
         </div>
 
-        <!-- ============================================
-        FOOTER
-        ============================================ -->
+        <!-- ===== FOOTER ===== -->
         <div class="footer">
             <div class="footer-names">Ahmed &amp; Nadia</div>
             <p class="footer-msg">
@@ -1436,8 +1727,6 @@
                 invite you with all their hearts.<br>
                 Please join us and bless our special day.
             </p>
-
-            <!-- Instagram Link in Footer -->
             <div style="margin-top: 1.5rem;">
                 <a href="https://www.instagram.com/yourwedding.eg/" target="_blank" class="instagram-link">
                     <span class="ig-icon">📸</span>
@@ -1445,44 +1734,70 @@
                     <span class="ig-username">@yourwedding.eg</span>
                 </a>
             </div>
-
             <p class="footer-dua" style="margin-top: 1.5rem;">🕊️ JazakAllah Khair · Khuda Hafiz 🕊️</p>
         </div>
 
     </div>
 
-    <!-- ============================================
-    AUDIO (Background Music)
-    ============================================ -->
+    <!-- ===== AUDIO ===== -->
     <audio id="bgMusic" loop preload="auto">
         <source src="assets/music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- ============================================
-    SCRIPTS
-    ============================================ -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
-        // ===== 1. Floating Items =====
+        // ===== Floating Items =====
         function createFloatingItems() {
             const container = document.getElementById('floatingItems');
-            const items = ['🕊️', '✨', '🪶', '🌿', '✦', '✧', '🌸', '🦋', '🌙', '🍃'];
-            for (let i = 0; i < 35; i++) {
+            const items = ['🕊️', '✨', '🪶', '🌿', '✦', '✧', '🌸', '🦋', '🌙', '🍃', '❤️', '💫', '🌺', '🍂', '🌹'];
+
+            for (let i = 0; i < 50; i++) {
                 const el = document.createElement('div');
                 el.className = 'float-item';
                 el.textContent = items[i % items.length];
                 el.style.left = Math.random() * 100 + '%';
-                el.style.fontSize = (16 + Math.random() * 38) + 'px';
-                el.style.opacity = 0.04 + Math.random() * 0.06;
+                el.style.fontSize = (14 + Math.random() * 44) + 'px';
+                el.style.opacity = 0.03 + Math.random() * 0.07;
+                el.style.animationDelay = (Math.random() * 35) + 's';
+                el.style.animationDuration = (12 + Math.random() * 35) + 's';
+                el.style.color = ['#5a7a9a', '#6a8aaa', '#4a6a8a', '#3a5a7a', '#7a9aaa', '#8a9aaa'][Math.floor(Math.random() *
+                    6)];
+                container.appendChild(el);
+            }
+
+            const sideItems = ['🕊️', '🪶', '🌸', '🌿', '🍃', '✨', '💫'];
+            for (let i = 0; i < 20; i++) {
+                const el = document.createElement('div');
+                el.className = 'float-item-side';
+                el.textContent = sideItems[i % sideItems.length];
+                el.style.top = Math.random() * 100 + '%';
+                el.style.fontSize = (16 + Math.random() * 36) + 'px';
+                el.style.opacity = 0.03 + Math.random() * 0.05;
                 el.style.animationDelay = (Math.random() * 30) + 's';
-                el.style.animationDuration = (14 + Math.random() * 30) + 's';
-                el.style.color = ['#5a7a9a', '#6a8aaa', '#4a6a8a', '#3a5a7a'][Math.floor(Math.random() * 4)];
+                el.style.animationDuration = (18 + Math.random() * 30) + 's';
+                el.style.color = ['#5a7a9a', '#6a8aaa', '#4a6a8a', '#8a9aaa'][Math.floor(Math.random() * 4)];
+                container.appendChild(el);
+            }
+
+            const swayItems = ['❤️', '💕', '💗', '💖', '✨', '🌸'];
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'float-sway';
+                el.textContent = swayItems[i % swayItems.length];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                el.style.fontSize = (18 + Math.random() * 40) + 'px';
+                el.style.opacity = 0.03 + Math.random() * 0.05;
+                el.style.animationDelay = (Math.random() * 25) + 's';
+                el.style.animationDuration = (6 + Math.random() * 10) + 's';
+                el.style.color = ['#e74c7a', '#d46a8a', '#c97a9a', '#b88aaa'][Math.floor(Math.random() * 4)];
                 container.appendChild(el);
             }
         }
         createFloatingItems();
 
-        // ===== 2. Video =====
+        // ===== Video =====
         const overlay = document.getElementById('videoOverlay');
         const container = document.getElementById('videoContainer');
         const video = document.getElementById('weddingVideo');
@@ -1502,7 +1817,7 @@
             container.classList.remove('show');
         });
 
-        // ===== 3. Countdown =====
+        // ===== Countdown =====
         const weddingDate = new Date('2026-12-15T20:00:00').getTime();
 
         function updateTimer() {
@@ -1525,20 +1840,23 @@
         updateTimer();
         setInterval(updateTimer, 1000);
 
-        // ===== 4. Particles =====
+        // ===== Particles =====
         const hero = document.getElementById('hero');
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 30; i++) {
             const p = document.createElement('div');
             p.className = 'particle';
             p.style.left = Math.random() * 100 + '%';
             p.style.top = Math.random() * 100 + '%';
-            p.style.animationDelay = Math.random() * 6 + 's';
-            p.style.animationDuration = (5 + Math.random() * 5) + 's';
-            p.style.width = p.style.height = (2 + Math.random() * 5) + 'px';
+            p.style.animationDelay = Math.random() * 8 + 's';
+            p.style.animationDuration = (4 + Math.random() * 6) + 's';
+            p.style.width = p.style.height = (2 + Math.random() * 6) + 'px';
+            p.style.background = ['rgba(90, 122, 154, 0.08)', 'rgba(106, 138, 170, 0.06)', 'rgba(74, 106, 138, 0.1)',
+                'rgba(58, 90, 122, 0.07)'
+            ][Math.floor(Math.random() * 4)];
             hero.appendChild(p);
         }
 
-        // ===== 5. Music Player (الحل الجديد) =====
+        // ===== Music Player =====
         const music = document.getElementById('bgMusic');
         const musicPlayer = document.getElementById('musicPlayer');
         const musicStatus = document.getElementById('musicStatus');
@@ -1546,10 +1864,8 @@
         let isMusicPlaying = false;
         let musicStarted = false;
 
-        // تغيير اسم الأغنية
         musicName.textContent = '🎵 My Wedding Song';
 
-        // دالة لتشغيل الموسيقى
         function startMusic() {
             if (musicStarted) return;
             musicStarted = true;
@@ -1565,19 +1881,16 @@
             });
         }
 
-        // تشغيل عند أول ضغطة على الصفحة
         document.addEventListener('click', function firstClick() {
             startMusic();
             document.removeEventListener('click', firstClick);
         }, { once: true });
 
-        // تشغيل عند أول لمسة (للموبايل)
         document.addEventListener('touchstart', function firstTouch() {
             startMusic();
             document.removeEventListener('touchstart', firstTouch);
         }, { once: true });
 
-        // زر تشغيل/إيقاف الموسيقى
         function toggleMusic() {
             if (!musicStarted) {
                 startMusic();
